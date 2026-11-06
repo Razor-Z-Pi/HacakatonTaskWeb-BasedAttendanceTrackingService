@@ -195,6 +195,8 @@ docker compose up --build -d
 
 Сайт: `http://localhost:8080`. Порт задаётся переменной `WEB_PORT`.
 
+Контейнер `web` намеренно слушает только `127.0.0.1:8080`. Если на хосте уже есть nginx с SSL, он должен проксировать домен на этот адрес — пример: `deploy/host-nginx.conf.example`.
+
 Что поднимается:
 
 - `backend` — Django + Gunicorn, SQLite в named volume `db_data`;

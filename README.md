@@ -40,7 +40,7 @@ cp .env.example .env
 docker compose up --build -d
 ```
 
-Сайт: `http://localhost:8080`. Порт меняется через `WEB_PORT`. Docker Compose поднимает Django/Gunicorn, отдельный nginx для frontend и прокси `/api`, а также volumes для SQLite и static-файлов.
+Сайт: `http://localhost:8080`. Порт меняется через `WEB_PORT`. Контейнер `web` слушает только `127.0.0.1`; наружу его отдаёт host-nginx с SSL — пример конфига в `deploy/host-nginx.conf.example`.
 
 ## Что реализовано
 
