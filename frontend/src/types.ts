@@ -6,8 +6,8 @@ export interface User {
   login: string;
   role: UserRole;
   full_name: string;
-  teacher_id?: number;
-  student_id?: string;
+  teacher_id?: number | null;
+  student_id?: string | null;
 }
 
 export interface Student {
@@ -25,7 +25,7 @@ export interface Lesson {
   weekday: number;
   slot_no: number;
   subject: string;
-  teacher_name: string;
+  teacher_name: string | null;
   auditory: string;
   type_lesson: string;
   groups: string[];
@@ -50,27 +50,49 @@ export interface JournalEntry {
   student_id: string;
   student_fio: string;
   status: AttendanceStatus;
+  group_name?: string;
+  lesson_id?: number;
 }
 
-// --- МОКОВЫЕ ДАННЫЕ ---
+export interface AttendanceRecord {
+  student_id: string;
+  student_fio: string;
+  status: AttendanceStatus;
+  marked_at: string;
+}
 
-export const MOCK_STUDENTS: Student[] = [
-  { student_id: "STU-5001", fio: "Смирнов Артём Олегович", gender: "м", group_name: "526-1", is_head: false },
-  { student_id: "STU-5002", fio: "Иванов Даниил Сергеевич", gender: "м", group_name: "526-1", is_head: false },
-  { student_id: "STU-5013", fio: "Павлова Мария Николаевна", gender: "ж", group_name: "526-1", is_head: true },
-  { student_id: "STU-5014", fio: "Козлова Анна Дмитриевна", gender: "ж", group_name: "526-1", is_head: false },
-];
+export interface CheckInInfo {
+  lesson: Lesson;
+  students: Student[];
+}
 
-export const MOCK_LESSON: Lesson = {
-  id: 8456,
-  lesson_date: "2026-11-02",
-  week_number: 10,
-  weekday: 1,
-  slot_no: 2,
-  subject: "Теоретическая информатика",
-  teacher_name: "Соснин Е.А.",
-  auditory: "2-423",
-  type_lesson: "л.",
-  groups: ["526-1"],
-  time_range: "10:10-11:40"
-};
+export interface CheckInResult {
+  lesson_id: number;
+  student_id: string;
+  status: AttendanceStatus;
+  created: boolean;
+}
+
+export interface ImportResult {
+  created: number;
+  skipped: number;
+  errors: string[];
+}
+
+export interface Meta {
+  groups: string[];
+  subjects: string[];
+  teachers: Array<{ id: number; fio: string; login?: string | null }>;
+  min_date: string | null;
+  max_date: string | null;
+}
+
+export interface AnalyticsFilters {
+  group?: string;
+  student_id?: string;
+  subject?: string;
+  date_from?: string;
+  date_to?: string;
+}
+
+export type JournalFilters = AnalyticsFilters;

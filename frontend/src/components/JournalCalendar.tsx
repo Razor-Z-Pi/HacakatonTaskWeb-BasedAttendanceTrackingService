@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Box, Typography, Paper, IconButton, Stack, Chip, Tooltip,
+  Box, Typography, Paper, IconButton, Stack, Chip,
   Dialog, DialogTitle, DialogContent, IconButton as MuiIconButton, List, ListItem, ListItemText, Divider
 } from '@mui/material';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
@@ -139,7 +139,7 @@ export const JournalCalendar: React.FC<JournalCalendarProps> = ({ data, title = 
               {hasData && (
                 <Stack spacing={0.5} sx={{ flexGrow: 1 }}>
                    <Typography variant="caption" sx={{ fontWeight: 600, color: 'text.primary', lineHeight: 1.2 }}>
-                     Занятий: {new Set(dayData.map(d => d.subject)).size}
+                     Занятий: {new Set(dayData.map(d => d.lesson_id ?? `${d.subject}-${d.date}`)).size}
                    </Typography>
                    
                    {presentCount > 0 && (
@@ -179,8 +179,10 @@ export const JournalCalendar: React.FC<JournalCalendarProps> = ({ data, title = 
                     <ListItemText
                       primary={entry.student_fio}
                       secondary={entry.subject}
-                      primaryTypographyProps={{ fontWeight: 600, variant: 'body2' }}
-                      secondaryTypographyProps={{ variant: 'caption' }}
+                      slotProps={{
+                        primary: { sx: { fontWeight: 600, fontSize: '0.875rem' } },
+                        secondary: { sx: { fontSize: '0.75rem' } },
+                      }}
                     />
                     <Chip 
                       label={colors.label} 

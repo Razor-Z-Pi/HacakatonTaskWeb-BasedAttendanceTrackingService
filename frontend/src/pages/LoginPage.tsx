@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import {
-  Box, Paper, TextField, Button, Typography, Alert, Avatar, useTheme,
+  Box, Paper, TextField, Button, Typography, Alert, Avatar, useTheme, CircularProgress,
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { api, ApiError } from '../api/client';
 
 const LoginPage: React.FC = () => {
   const theme = useTheme();
@@ -13,23 +14,25 @@ const LoginPage: React.FC = () => {
   const [loginValue, setLoginValue] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    setLoading(true);
 
-    if (loginValue === 'teacher' && password === '1234') {
-      const mockUser = {
-        id: 1,
-        login: 'teacher',
-        role: 'teacher' as const,
-        full_name: 'Соснин Евгений Анатольевич',
-        teacher_id: 1,
-      };
-      login('mock-jwt-token-xxxxx', mockUser);
+    try {
+      const response = await api.login(loginValue, password);
+      login(response.access_token, response.user);
       navigate('/');
-    } else {
-      setError('Неверный логин или пароль. Попробуйте: teacher / 1234');
+    } catch (err) {
+      if (err instanceof ApiError) {
+        setError(err.message);
+      } else {
+        setError('Не удалось подключиться к серверу. Проверьте, что backend запущен.');
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -79,7 +82,15 @@ const LoginPage: React.FC = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <Button type="submit" fullWidth variant="contained" size="large" sx={{ mt: 3, mb: 2, py: 1.5 }}>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            size="large"
+            disabled={loading}
+            startIcon={loading ? <CircularProgress size={18} color="inherit" /> : undefined}
+            sx={{ mt: 3, mb: 2, py: 1.5 }}
+          >
             Войти
           </Button>
 
@@ -87,7 +98,13 @@ const LoginPage: React.FC = () => {
             variant="caption"
             sx={{ color: 'text.secondary', display: 'block', textAlign: 'center' }}
           >
-            Демо-доступ: <b>teacher / 1234</b>
+            Демо-доступ преподавателя: <b>sosnin.ea / 1234</b>
+          </Typography>
+          <Typography
+            variant="caption"
+            sx={{ color: 'text.secondary', display: 'block', textAlign: 'center', mt: 0.5 }}
+          >
+            Логин: фамилия.инициалы, например <b>kravchenko.ov</b>
           </Typography>
         </Box>
       </Paper>

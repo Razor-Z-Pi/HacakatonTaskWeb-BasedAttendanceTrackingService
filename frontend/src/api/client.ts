@@ -1,38 +1,183 @@
-// Это заготовка для интеграции с Django Rest Framework
+import type {
+  AnalyticsFilters,
+  AttendanceRecord,
+  AttendanceStat,
+  AttendanceStatus,
+  CheckInInfo,
+  CheckInResult,
+  ImportResult,
+  JournalEntry,
+  JournalFilters,
+  Lesson,
+  Meta,
+  Student,
+  User,
+} from '../types';
 
-const BASE_URL = 'http://localhost:8000/api'; // Адрес Django
+const BASE_URL = (import.meta.env.VITE_API_URL ?? '/api').replace(/\/+$/, '');
+
+export class ApiError extends Error {
+  status: number;
+
+  constructor(message: string, status: number) {
+    super(message);
+    this.name = 'ApiError';
+    this.status = status;
+  }
+}
+
+interface LoginResponse {
+  access_token: string;
+  token_type: string;
+  user: User;
+}
+
+interface LessonAttendanceResponse {
+  lesson_id: number;
+  records: AttendanceRecord[];
+}
+
+interface SaveAttendanceResponse extends LessonAttendanceResponse {
+  saved: number;
+}
+
+interface RequestOptions extends RequestInit {
+  body?: BodyInit | null;
+}
+
+function buildQuery(params: object): string {
+  const search = new URLSearchParams();
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined && value !== null && value !== '') {
+      search.set(key, String(value));
+    }
+  });
+  const query = search.toString();
+  return query ? `?${query}` : '';
+}
+
+function errorMessage(payload: unknown, status: number): string {
+  if (payload && typeof payload === 'object') {
+    const detail = (payload as { detail?: unknown }).detail;
+    if (typeof detail === 'string') return detail;
+    const parts = Object.entries(payload as Record<string, unknown>)
+      .map(([field, value]) => `${field}: ${Array.isArray(value) ? value.join(', ') : String(value)}`)
+      .filter(Boolean);
+    if (parts.length) return parts.join('; ');
+  }
+  return `Ошибка запроса (${status})`;
+}
+
+async function request<T>(path: string, options: RequestOptions = {}): Promise<T> {
+  const headers = new Headers(options.headers);
+  headers.set('Accept', 'application/json');
+
+  if (options.body && !(options.body instanceof FormData)) {
+    headers.set('Content-Type', 'application/json');
+  }
+
+  const token = localStorage.getItem('access_token');
+  if (token) {
+    headers.set('Authorization', `Bearer ${token}`);
+  }
+
+  const response = await fetch(`${BASE_URL}${path}`, { ...options, headers });
+  const text = await response.text();
+  let payload: unknown = null;
+
+  if (text) {
+    try {
+      payload = JSON.parse(text);
+    } catch {
+      payload = text;
+    }
+  }
+
+  if (!response.ok) {
+    if (response.status === 401 && !path.startsWith('/auth/login/')) {
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('user');
+      if (window.location.pathname !== '/login') {
+        window.location.assign('/login');
+      }
+    }
+    throw new ApiError(errorMessage(payload, response.status), response.status);
+  }
+
+  return payload as T;
+}
 
 export const api = {
-  // Получить список пар на сегодня/неделю
-  getSchedule: async (date?: string) => {
-    // const res = await fetch(`${BASE_URL}/schedule/?date=${date}`);
-    // return res.json();
-    return []; // Заглушка
-  },
-
-  // Получить студентов для конкретной пары
-  getStudentsForLesson: async (lessonId: number) => {
-    // const res = await fetch(`${BASE_URL}/lessons/${lessonId}/students/`);
-    // return res.json();
-    return [];
-  },
-
-  // Отправить посещаемость
-  submitAttendance: async (lessonId: number, records: Record<string, string>) => {
-    /* 
-    const payload = Object.entries(records).map(([student_id, status]) => ({
-      student_id,
-      status
-    }));
-    
-    const res = await fetch(`${BASE_URL}/lessons/${lessonId}/attendance/`, {
+  login: (login: string, password: string) =>
+    request<LoginResponse>('/auth/login/', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ records: payload })
+      body: JSON.stringify({ login, password }),
+    }),
+
+  getMe: () => request<User>('/auth/me/'),
+
+  getMeta: () => request<Meta>('/meta/'),
+
+  getStudents: (group?: string) =>
+    request<Student[]>(`/students/${buildQuery({ group })}`),
+
+  getLessons: (filters: {
+    date_from?: string;
+    date_to?: string;
+    group?: string;
+    subject?: string;
+    teacher_id?: number;
+  } = {}) => request<Lesson[]>(`/lessons/${buildQuery(filters)}`),
+
+  getLesson: (lessonId: number) => request<Lesson>(`/lessons/${lessonId}/`),
+
+  getLessonStudents: (lessonId: number) =>
+    request<Student[]>(`/lessons/${lessonId}/students/`),
+
+  getLessonAttendance: (lessonId: number) =>
+    request<LessonAttendanceResponse>(`/lessons/${lessonId}/attendance/`),
+
+  importSchedule: (file: File) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    return request<ImportResult>('/lessons/import/', {
+      method: 'POST',
+      body: formData,
     });
-    return res.json();
-    */
-    console.log("Sending to backend:", records);
-    return { success: true };
-  }
+  },
+
+  getCheckinToken: (lessonId: number) =>
+    request<{ lesson_id: number; token: string }>(`/lessons/${lessonId}/checkin/`),
+
+  getCheckInInfo: (token: string) =>
+    request<CheckInInfo>(`/check-in/${token}/`),
+
+  checkIn: (token: string, studentId: string) =>
+    request<CheckInResult>(`/check-in/${token}/`, {
+      method: 'POST',
+      body: JSON.stringify({ student_id: studentId }),
+    }),
+
+  saveAttendance: (
+    lessonId: number,
+    records: Array<{ student_id: string; status: AttendanceStatus }>,
+  ) =>
+    request<SaveAttendanceResponse>(`/lessons/${lessonId}/attendance/`, {
+      method: 'POST',
+      body: JSON.stringify({ records }),
+    }),
+
+  analyticsReportUrl: (format: 'xlsx' | 'pdf', filters: AnalyticsFilters = {}) =>
+    `${BASE_URL}/reports/analytics.${format}${buildQuery(filters)}`,
+
+  lessonReportUrl: (lessonId: number, format: 'xlsx' | 'pdf') =>
+    `${BASE_URL}/reports/lessons/${lessonId}.${format}`,
+
+  getAnalytics: (filters: AnalyticsFilters = {}) =>
+    request<AttendanceStat[]>(`/analytics/${buildQuery(filters)}`),
+
+  getJournal: (filters: JournalFilters = {}) =>
+    request<JournalEntry[]>(`/journal/${buildQuery(filters)}`),
 };
+
+export type { LoginResponse, LessonAttendanceResponse, SaveAttendanceResponse };

@@ -2,7 +2,8 @@ import React, { useState, useEffect, useMemo } from 'react';
 import {
   Box, Typography, Grid, Paper, Button, Table, TableBody, TableCell,
   TableContainer, TableHead, TableRow, Chip, Stack, Skeleton,
-  FormControl, InputLabel, Select, MenuItem, Tab, Tabs, IconButton, Tooltip
+  FormControl, InputLabel, Select, MenuItem, Tab, Tabs, IconButton, Tooltip,
+  Alert, LinearProgress,
 } from '@mui/material';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend,
@@ -10,118 +11,113 @@ import {
 } from 'recharts';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
-import SendIcon from '@mui/icons-material/Send';
 import DescriptionIcon from '@mui/icons-material/Description';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 
-import type { AttendanceStat, JournalEntry } from '../types';
-import { exportToExcel, exportToPDF } from '../utils/export';
+import type { AttendanceStat, JournalEntry, Meta, Student } from '../types';
+import { api, ApiError } from '../api/client';
 import { generateMedicalCertificate } from '../utils/pdfDocs';
 import { JournalCalendar } from '../components/JournalCalendar';
 
-// --- МОКИ ДАННЫХ ---
-const SUBJECTS = ['Все предметы', 'Теоретическая информатика', 'История России', 'Математика'];
-
-const MOCK_ANALYTICS: AttendanceStat[] = [
-  { student_id: 'STU-5001', fio: 'Смирнов Артём', group_name: '526-1', total_lessons: 20, present: 15, absent: 5, late: 0, excused: 0, percent: 75 },
-  { student_id: 'STU-5002', fio: 'Иванов Даниил', group_name: '526-1', total_lessons: 20, present: 4, absent: 16, late: 0, excused: 0, percent: 20 },
-  { student_id: 'STU-5013', fio: 'Павлова Мария', group_name: '526-1', total_lessons: 20, present: 20, absent: 0, late: 0, excused: 0, percent: 100 },
-  { student_id: 'STU-5014', fio: 'Козлова Анна', group_name: '526-1', total_lessons: 20, present: 10, absent: 10, late: 0, excused: 0, percent: 50 },
-  { student_id: 'STU-5026', fio: 'Белов Григорий', group_name: '526-2', total_lessons: 20, present: 17, absent: 3, late: 0, excused: 0, percent: 85 },
-  { student_id: 'STU-5027', fio: 'Тихонов Арсений', group_name: '526-2', total_lessons: 20, present: 5, absent: 15, late: 0, excused: 0, percent: 25 },
-];
-
-const MOCK_JOURNAL: JournalEntry[] = [
-  { date: '2026-11-02', subject: 'Информатика', student_id: 'STU-5001', student_fio: 'Смирнов Артём', status: 'present' },
-  { date: '2026-11-02', subject: 'Информатика', student_id: 'STU-5002', student_fio: 'Иванов Даниил', status: 'absent' },
-  { date: '2026-11-02', subject: 'Информатика', student_id: 'STU-5013', student_fio: 'Павлова Мария', status: 'present' },
-  { date: '2026-11-02', subject: 'История', student_id: 'STU-5001', student_fio: 'Смирнов Артём', status: 'late' },
-  { date: '2026-11-02', subject: 'История', student_id: 'STU-5013', student_fio: 'Павлова Мария', status: 'present' },
-  { date: '2026-11-03', subject: 'Математика', student_id: 'STU-5001', student_fio: 'Смирнов Артём', status: 'present' },
-  { date: '2026-11-03', subject: 'Математика', student_id: 'STU-5002', student_fio: 'Иванов Даниил', status: 'present' },
-  { date: '2026-11-03', subject: 'Математика', student_id: 'STU-5013', student_fio: 'Павлова Мария', status: 'present' },
-  { date: '2026-11-03', subject: 'Математика', student_id: 'STU-5014', student_fio: 'Козлова Анна', status: 'present' },
-  { date: '2026-11-05', subject: 'История', student_id: 'STU-5001', student_fio: 'Смирнов Артём', status: 'absent' },
-  { date: '2026-11-05', subject: 'История', student_id: 'STU-5002', student_fio: 'Иванов Даниил', status: 'absent' },
-  { date: '2026-11-05', subject: 'История', student_id: 'STU-5013', student_fio: 'Павлова Мария', status: 'present' },
-  { date: '2026-11-12', subject: 'Информатика', student_id: 'STU-5001', student_fio: 'Смирнов Артём', status: 'present' },
-  { date: '2026-11-12', subject: 'Информатика', student_id: 'STU-5013', student_fio: 'Павлова Мария', status: 'present' },
-  { date: '2026-11-12', subject: 'Информатика', student_id: 'STU-5014', student_fio: 'Козлова Анна', status: 'absent' },
-  { date: '2026-11-16', subject: 'История', student_id: 'STU-5001', student_fio: 'Смирнов Артём', status: 'excused' },
-  { date: '2026-11-16', subject: 'История', student_id: 'STU-5002', student_fio: 'Иванов Даниил', status: 'present' },
-  { date: '2026-11-16', subject: 'История', student_id: 'STU-5013', student_fio: 'Павлова Мария', status: 'present' },
-  { date: '2026-11-16', subject: 'История', student_id: 'STU-5026', student_fio: 'Белов Григорий', status: 'present' },
-];
-
+const ALL_SUBJECTS = 'Все предметы';
 const COLORS = ['#10b981', '#ef4444', '#f59e0b', '#3b82f6'];
 
 const AnalyticsPage: React.FC = () => {
+  const [meta, setMeta] = useState<Meta | null>(null);
   const [data, setData] = useState<AttendanceStat[]>([]);
+  const [students, setStudents] = useState<Student[]>([]);
+  const [journal, setJournal] = useState<JournalEntry[]>([]);
   const [loading, setLoading] = useState(true);
-  
+  const [journalLoading, setJournalLoading] = useState(false);
+  const [error, setError] = useState('');
+
   // Фильтры
   const [selectedGroup, setSelectedGroup] = useState<string>('all'); // 'all' - все группы
   const [selectedStudent, setSelectedStudent] = useState<string>('all');
-  const [selectedSubject, setSelectedSubject] = useState<string>('Все предметы');
-  
+  const [selectedSubject, setSelectedSubject] = useState<string>(ALL_SUBJECTS);
   const [tabIndex, setTabIndex] = useState(0);
 
   useEffect(() => {
-    setTimeout(() => {
-      setData(MOCK_ANALYTICS);
-      setLoading(false);
-    }, 800);
+    api.getMeta()
+      .then(setMeta)
+      .catch((err) => {
+        setError(err instanceof ApiError ? err.message : 'Не удалось загрузить справочники.');
+      });
   }, []);
 
-  // Список студентов для фильтра (зависит от выбранной группы)
-  const studentsForSelect = useMemo(() => {
-    if (selectedGroup === 'all') return data;
-    return data.filter(d => d.group_name === selectedGroup);
-  }, [data, selectedGroup]);
-
-  // Фильтрация данных для графиков и таблиц
-  const filteredData = useMemo(() => {
-    let result = data;
-
-    // Фильтр по группе
-    if (selectedGroup !== 'all') {
-      result = result.filter(d => d.group_name === selectedGroup);
+  useEffect(() => {
+    if (selectedGroup === 'all') {
+      setStudents([]);
+      return;
     }
+    let cancelled = false;
+    api.getStudents(selectedGroup)
+      .then((items) => {
+        if (!cancelled) setStudents(items);
+      })
+      .catch((err) => {
+        if (!cancelled) {
+          setStudents([]);
+          setError(err instanceof ApiError ? err.message : 'Не удалось загрузить студентов.');
+        }
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [selectedGroup]);
 
-    // Фильтр по студенту
-    if (selectedStudent !== 'all') {
-      result = result.filter(d => d.student_id === selectedStudent);
-    }
+  const analyticsFilters = useMemo(() => ({
+    group: selectedGroup === 'all' ? undefined : selectedGroup,
+    student_id: selectedStudent === 'all' ? undefined : selectedStudent,
+    subject: selectedSubject === ALL_SUBJECTS ? undefined : selectedSubject,
+  }), [selectedGroup, selectedStudent, selectedSubject]);
 
-    // Имитация фильтра по предмету (в реальности тут запрос к API, Сюда надоооо)
-    if (selectedSubject !== 'Все предметы') {
-        result = result.map(r => ({
-            ...r,
-            present: Math.max(0, r.present - 3),
-            percent: Math.round((r.present - 3) / r.total_lessons * 100)
-        }));
-    }
-    
-    return result;
-  }, [data, selectedGroup, selectedStudent, selectedSubject]);
+  useEffect(() => {
+    let cancelled = false;
+    setLoading(true);
+    setError('');
+    api.getAnalytics(analyticsFilters)
+      .then((items) => {
+        if (!cancelled) setData(items);
+      })
+      .catch((err) => {
+        if (!cancelled) {
+          setData([]);
+          setError(err instanceof ApiError ? err.message : 'Не удалось загрузить аналитику.');
+        }
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [analyticsFilters]);
 
-  // Фильтрация журнала для календаря
-  const filteredJournal = useMemo(() => {
-    let result = MOCK_JOURNAL;
-    
-    // Группа (если выбрана не all)
-    if (selectedGroup !== 'all') {
-      // В мок-данных журнала нет поля group, поэтому фильтруем по студентам этой группы
-      const studentIds = data.filter(d => d.group_name === selectedGroup).map(d => d.student_id);
-      result = result.filter(j => studentIds.includes(j.student_id));
-    }
+  useEffect(() => {
+    if (tabIndex !== 1) return;
+    let cancelled = false;
+    setJournalLoading(true);
+    api.getJournal(analyticsFilters)
+      .then((items) => {
+        if (!cancelled) setJournal(items);
+      })
+      .catch((err) => {
+        if (!cancelled) {
+          setJournal([]);
+          setError(err instanceof ApiError ? err.message : 'Не удалось загрузить журнал.');
+        }
+      })
+      .finally(() => {
+        if (!cancelled) setJournalLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [tabIndex, analyticsFilters]);
 
-    if (selectedStudent !== 'all') result = result.filter(j => j.student_id === selectedStudent);
-    if (selectedSubject !== 'Все предметы') result = result.filter(j => j.subject.includes(selectedSubject.split(' ')[0]));
-    
-    return result;
-  }, [selectedStudent, selectedSubject, selectedGroup, data]);
+  const filteredData = data;
 
   const pieData = filteredData.length ? [
     { name: 'Присутствовал', value: filteredData.reduce((s, d) => s + d.present, 0) },
@@ -131,27 +127,36 @@ const AnalyticsPage: React.FC = () => {
   ] : [];
 
   const getZoneInfo = (percent: number) => {
-    if (percent >= 80) return { color: 'success', label: 'Зеленая зона', bg: '#dcfce7', text: '#166534' };
-    if (percent >= 50) return { color: 'warning', label: 'Желтая зона', bg: '#fef3c7', text: '#92400e' };
-    if (percent >= 20) return { color: 'error', label: 'Красная зона', bg: '#fee2e2', text: '#991b1b' };
-    return { color: 'error', label: 'Критическая', bg: '#fca5a5', text: '#7f1d1d' };
+    if (percent >= 70) return { color: 'success', label: 'Зеленая зона', bg: '#dcfce7', text: '#166534' };
+    if (percent >= 20) return { color: 'warning', label: 'Желтая зона', bg: '#fef3c7', text: '#92400e' };
+    return { color: 'error', label: 'Красная зона', bg: '#fee2e2', text: '#991b1b' };
   };
 
-  const reportTitle = `Отчет по ${selectedSubject === 'Все предметы' ? 'всем предметам' : selectedSubject} (Группа: ${selectedGroup === 'all' ? 'Все' : selectedGroup})`;
+  const groups = meta?.groups ?? [];
+  const subjects = meta?.subjects ?? [];
+
+  const handleReport = (format: 'xlsx' | 'pdf') => {
+    window.location.assign(api.analyticsReportUrl(format, analyticsFilters));
+  };
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-      {/* Header */}
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 2 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, flexWrap: 'wrap' }}>
           <Typography variant="h4" sx={{ fontWeight: 700 }}>Аналитика</Typography>
-          
+
           <FormControl size="small" sx={{ minWidth: 140 }}>
             <InputLabel>Группа</InputLabel>
-            <Select value={selectedGroup} label="Группа" onChange={(e) => { setSelectedGroup(e.target.value); setSelectedStudent('all'); }}>
+            <Select
+              value={selectedGroup}
+              label="Группа"
+              onChange={(e) => {
+                setSelectedGroup(e.target.value);
+                setSelectedStudent('all');
+              }}
+            >
               <MenuItem value="all">Все группы</MenuItem>
-              <MenuItem value="526-1">526-1</MenuItem>
-              <MenuItem value="526-2">526-2</MenuItem>
+              {groups.map((group) => <MenuItem key={group} value={group}>{group}</MenuItem>)}
             </Select>
           </FormControl>
 
@@ -159,44 +164,49 @@ const AnalyticsPage: React.FC = () => {
             <InputLabel>Студент</InputLabel>
             <Select value={selectedStudent} label="Студент" onChange={(e) => setSelectedStudent(e.target.value)}>
               <MenuItem value="all">Все студенты</MenuItem>
-              {studentsForSelect.map(s => <MenuItem key={s.student_id} value={s.student_id}>{s.fio}</MenuItem>)}
+              {students.map((student) => (
+                <MenuItem key={student.student_id} value={student.student_id}>{student.fio}</MenuItem>
+              ))}
             </Select>
           </FormControl>
 
           <FormControl size="small" sx={{ minWidth: 180 }}>
             <InputLabel>Предмет</InputLabel>
             <Select value={selectedSubject} label="Предмет" onChange={(e) => setSelectedSubject(e.target.value)}>
-              {SUBJECTS.map(sub => <MenuItem key={sub} value={sub}>{sub}</MenuItem>)}
+              <MenuItem value={ALL_SUBJECTS}>{ALL_SUBJECTS}</MenuItem>
+              {subjects.map((subject) => <MenuItem key={subject} value={subject}>{subject}</MenuItem>)}
             </Select>
           </FormControl>
         </Box>
 
         <Stack direction="row" spacing={1.5}>
-          <Button variant="outlined" color="success" startIcon={<FileDownloadIcon />} onClick={() => exportToExcel(filteredData, reportTitle)} disabled={loading}>
+          <Button variant="outlined" color="success" startIcon={<FileDownloadIcon />} onClick={() => handleReport('xlsx')} disabled={loading}>
             Excel
           </Button>
-          <Button variant="contained" color="error" startIcon={<PictureAsPdfIcon />} onClick={() => exportToPDF(filteredData, reportTitle, 'analytics_report')} disabled={loading}>
+          <Button variant="contained" color="error" startIcon={<PictureAsPdfIcon />} onClick={() => handleReport('pdf')} disabled={loading}>
             PDF
           </Button>
         </Stack>
       </Box>
 
+      {error && <Alert severity="error" onClose={() => setError('')}>{error}</Alert>}
+      {loading && <LinearProgress />}
+
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={tabIndex} onChange={(e, v) => setTabIndex(v)}>
+        <Tabs value={tabIndex} onChange={(_, value) => setTabIndex(value)}>
           <Tab label="Обзор и графики" />
           <Tab label="Журнал посещений (Календарь)" />
         </Tabs>
       </Box>
 
-      {/* Вкладка: Обзор */}
       {tabIndex === 0 && (
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
           <Grid container spacing={3}>
             {[
               { label: 'Средняя посещаемость', value: `${Math.round(filteredData.reduce((s, d) => s + d.percent, 0) / (filteredData.length || 1))}%` },
               { label: 'Студентов', value: filteredData.length },
-              { label: 'Красная зона (<50%)', value: filteredData.filter((d) => d.percent < 50).length },
-              { label: 'Зеленая зона (>=80%)', value: filteredData.filter((d) => d.percent >= 80).length },
+              { label: 'Красная зона (<20%)', value: filteredData.filter((d) => d.percent < 20).length },
+              { label: 'Зеленая зона (>=70%)', value: filteredData.filter((d) => d.percent >= 70).length },
             ].map((kpi, i) => (
               <Grid key={i} size={{ xs: 6, md: 3 }}>
                 <Paper sx={{ p: 2.5, borderRadius: 3, height: '100%' }}>
@@ -220,7 +230,7 @@ const AnalyticsPage: React.FC = () => {
                       <RechartsTooltip formatter={(v) => `${v}%`} />
                       <Bar dataKey="percent" name="% посещаемости" radius={[6, 6, 0, 0]}>
                         {filteredData.map((entry, index) => (
-                          <Cell key={index} fill={entry.percent >= 80 ? '#10b981' : entry.percent >= 50 ? '#f59e0b' : '#ef4444'} />
+                          <Cell key={index} fill={entry.percent >= 70 ? '#10b981' : entry.percent >= 20 ? '#f59e0b' : '#ef4444'} />
                         ))}
                       </Bar>
                     </BarChart>
@@ -272,16 +282,9 @@ const AnalyticsPage: React.FC = () => {
                           <Chip label={zone.label} size="small" sx={{ bgcolor: zone.bg, color: zone.text, fontWeight: 600 }} />
                         </TableCell>
                         <TableCell align="center">
-                          {row.percent > 80 ? <TrendingUpIcon color="success" fontSize="small" /> : <TrendingDownIcon color="error" fontSize="small" />}
+                          {row.percent >= 70 ? <TrendingUpIcon color="success" fontSize="small" /> : <TrendingDownIcon color="error" fontSize="small" />}
                         </TableCell>
                         <TableCell align="right">
-                          {row.percent < 20 && (
-                            <Tooltip title="Предупреждение куратору">
-                              <IconButton color="error" size="small" onClick={() => alert(`Куратору группы ${row.group_name} отправлено предупреждение о ${row.fio}`)}>
-                                <SendIcon fontSize="small" />
-                              </IconButton>
-                            </Tooltip>
-                          )}
                           <Tooltip title="Справка">
                             <IconButton color="primary" size="small" onClick={() => generateMedicalCertificate(row.fio, new Date().toLocaleDateString('ru-RU'))}>
                               <DescriptionIcon fontSize="small" />
@@ -298,12 +301,16 @@ const AnalyticsPage: React.FC = () => {
         </Box>
       )}
 
-      {/* Вкладка: Журнал */}
       {tabIndex === 1 && (
         <Box>
-          <JournalCalendar 
-            data={filteredJournal} 
-            title={selectedGroup === 'all' ? 'Сводный журнал' : (selectedStudent === 'all' ? `Журнал группы ${selectedGroup}` : `Журнал: ${studentsForSelect.find(s => s.student_id === selectedStudent)?.fio}`)}
+          {journalLoading && <LinearProgress sx={{ mb: 2 }} />}
+          <JournalCalendar
+            data={journal}
+            title={selectedGroup === 'all'
+              ? 'Сводный журнал'
+              : (selectedStudent === 'all'
+                ? `Журнал группы ${selectedGroup}`
+                : `Журнал: ${students.find((s) => s.student_id === selectedStudent)?.fio ?? selectedStudent}`)}
           />
         </Box>
       )}

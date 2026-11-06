@@ -8,6 +8,7 @@ import LoginPage from './pages/LoginPage';
 import Dashboard from './pages/Dashboard';
 import AttendancePage from './pages/AttendancePage';
 import AnalyticsPage from './pages/AnalyticsPage';
+import CheckInPage from './pages/CheckInPage';
 import Layout from './components/Layout';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/check-in/:token" element={<CheckInPage />} />
             
             {/* Защищенные роуты */}
             <Route element={<ProtectedRoute />}>
