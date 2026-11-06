@@ -1,0 +1,2125 @@
+{
+  "dataset": "schedule_526_mock",
+  "period": {
+    "from": "2.11.2026",
+    "to": "21.11.2026"
+  },
+  "slots": {
+    "1": "08:30-10:00",
+    "2": "10:10-11:40",
+    "3": "13:40-15:10",
+    "4": "15:20-16:50"
+  },
+  "note": "schedule: 9 объектов формата API ИТИ (3 группы x 3 недели); 4.11 — праздник; субботы свободны; преподаватели вымышленные",
+  "schedule": [
+    {
+      "week_number": 10,
+      "days": [
+        {
+          "weekday": 1,
+          "week_number": 10,
+          "lessons": [
+            {
+              "id": 8456,
+              "subject": "Теоретическая информатика",
+              "teacher": "Соснин Е.А.",
+              "auditory": "2-423",
+              "type_lesson": "л.",
+              "time": 2,
+              "group": [
+                "526-1"
+              ]
+            },
+            {
+              "id": 8457,
+              "subject": "История России",
+              "teacher": "Плотников А.А.",
+              "auditory": "2-523",
+              "type_lesson": "л.",
+              "time": 3,
+              "group": [
+                "526-1"
+              ]
+            },
+            {
+              "id": 8458,
+              "subject": "Математика. Линейная алгебра",
+              "teacher": "Кравченко О.В.",
+              "auditory": "2-423",
+              "type_lesson": "л.",
+              "time": 4,
+              "group": [
+                "526-1"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 2,
+          "week_number": 10,
+          "lessons": [
+            {
+              "id": 8459,
+              "subject": "Основы программирования",
+              "teacher": "Егоров М.Ф.",
+              "auditory": "2-423",
+              "type_lesson": "л.",
+              "time": 1,
+              "group": [
+                "526-1"
+              ]
+            },
+            {
+              "id": 8460,
+              "subject": "Введение в учебную и исследовательскую деятельность",
+              "teacher": "Ильина Н.А.",
+              "auditory": "2-221",
+              "type_lesson": "л.",
+              "time": 2,
+              "group": [
+                "526-1"
+              ]
+            },
+            {
+              "id": 8461,
+              "subject": "Основы проектной деятельности",
+              "teacher": "Дорофеев И.В.",
+              "auditory": "2-606",
+              "type_lesson": "пр.",
+              "time": 3,
+              "group": [
+                "526-1"
+              ]
+            },
+            {
+              "id": 8462,
+              "subject": "Математика. Линейная алгебра",
+              "teacher": "Кравченко О.В.",
+              "auditory": "2-402",
+              "type_lesson": "пр.",
+              "time": 4,
+              "group": [
+                "526-1"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 3,
+          "week_number": 10,
+          "lessons": null
+        },
+        {
+          "weekday": 4,
+          "week_number": 10,
+          "lessons": [
+            {
+              "id": 8463,
+              "subject": "Концепции современного естествознания",
+              "teacher": "Усова Н.Н.",
+              "auditory": "2-423",
+              "type_lesson": "л.",
+              "time": 2,
+              "group": [
+                "526-1"
+              ]
+            },
+            {
+              "id": 8464,
+              "subject": "Иностранный язык",
+              "teacher": "Малышева Н.В.",
+              "auditory": "2-509",
+              "type_lesson": "пр.",
+              "time": 3,
+              "group": [
+                "526-1"
+              ]
+            },
+            {
+              "id": 8465,
+              "subject": "Основы программирования",
+              "teacher": "Кулагин Д.А.",
+              "auditory": "2-502",
+              "type_lesson": "лаб.",
+              "time": 4,
+              "group": [
+                "526-1"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 5,
+          "week_number": 10,
+          "lessons": [
+            {
+              "id": 8466,
+              "subject": "История России",
+              "teacher": "Ремизов Е.И.",
+              "auditory": "2-403",
+              "type_lesson": "пр.",
+              "time": 1,
+              "group": [
+                "526-1"
+              ]
+            },
+            {
+              "id": 8467,
+              "subject": "Основы командной работы",
+              "teacher": "Ильина Н.А.",
+              "auditory": "2-221",
+              "type_lesson": "л.",
+              "time": 2,
+              "group": [
+                "526-1"
+              ]
+            },
+            {
+              "id": 8468,
+              "subject": "Введение в учебную и исследовательскую деятельность",
+              "teacher": "Ильина Н.А.",
+              "auditory": "2-221",
+              "type_lesson": "пр.",
+              "time": 3,
+              "group": [
+                "526-1"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 6,
+          "week_number": 10,
+          "lessons": null
+        },
+        {
+          "weekday": 1,
+          "week_number": 0,
+          "lessons": null
+        }
+      ],
+      "dates": {
+        "current_date": "6.11.2026",
+        "date_start": "2.11.2026",
+        "date_end": "7.11.2026",
+        "dates": [
+          {
+            "date": "2.11.2026",
+            "weekday": 1
+          },
+          {
+            "date": "3.11.2026",
+            "weekday": 2
+          },
+          {
+            "date": "4.11.2026",
+            "weekday": 3
+          },
+          {
+            "date": "5.11.2026",
+            "weekday": 4
+          },
+          {
+            "date": "6.11.2026",
+            "weekday": 5
+          },
+          {
+            "date": "7.11.2026",
+            "weekday": 6
+          }
+        ]
+      },
+      "day_time": "13:40-15:10"
+    },
+    {
+      "week_number": 11,
+      "days": [
+        {
+          "weekday": 1,
+          "week_number": 11,
+          "lessons": [
+            {
+              "id": 8469,
+              "subject": "Теоретическая информатика",
+              "teacher": "Соснин Е.А.",
+              "auditory": "2-423",
+              "type_lesson": "л.",
+              "time": 2,
+              "group": [
+                "526-1"
+              ]
+            },
+            {
+              "id": 8470,
+              "subject": "История России",
+              "teacher": "Плотников А.А.",
+              "auditory": "2-523",
+              "type_lesson": "л.",
+              "time": 3,
+              "group": [
+                "526-1"
+              ]
+            },
+            {
+              "id": 8471,
+              "subject": "Математика. Линейная алгебра",
+              "teacher": "Кравченко О.В.",
+              "auditory": "2-423",
+              "type_lesson": "л.",
+              "time": 4,
+              "group": [
+                "526-1"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 2,
+          "week_number": 11,
+          "lessons": [
+            {
+              "id": 8472,
+              "subject": "Основы программирования",
+              "teacher": "Егоров М.Ф.",
+              "auditory": "2-423",
+              "type_lesson": "л.",
+              "time": 1,
+              "group": [
+                "526-1"
+              ]
+            },
+            {
+              "id": 8473,
+              "subject": "Введение в учебную и исследовательскую деятельность",
+              "teacher": "Ильина Н.А.",
+              "auditory": "2-221",
+              "type_lesson": "л.",
+              "time": 2,
+              "group": [
+                "526-1"
+              ]
+            },
+            {
+              "id": 8474,
+              "subject": "Основы проектной деятельности",
+              "teacher": "Дорофеев И.В.",
+              "auditory": "2-606",
+              "type_lesson": "пр.",
+              "time": 3,
+              "group": [
+                "526-1"
+              ]
+            },
+            {
+              "id": 8475,
+              "subject": "Математика. Линейная алгебра",
+              "teacher": "Кравченко О.В.",
+              "auditory": "2-402",
+              "type_lesson": "пр.",
+              "time": 4,
+              "group": [
+                "526-1"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 3,
+          "week_number": 11,
+          "lessons": [
+            {
+              "id": 8476,
+              "subject": "Теоретическая информатика",
+              "teacher": "Лапина А.В.",
+              "auditory": "2-606",
+              "type_lesson": "лаб.",
+              "time": 1,
+              "group": [
+                "526-1"
+              ]
+            },
+            {
+              "id": 8477,
+              "subject": "Математика. Линейная алгебра",
+              "teacher": "Кравченко О.В.",
+              "auditory": "2-406",
+              "type_lesson": "пр.",
+              "time": 2,
+              "group": [
+                "526-1"
+              ]
+            },
+            {
+              "id": 8478,
+              "subject": "Общая и прикладная физическая подготовка",
+              "teacher": "Щербаков О.С.",
+              "auditory": "17-СЗ",
+              "type_lesson": "пр.",
+              "time": 3,
+              "group": [
+                "526-1"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 4,
+          "week_number": 11,
+          "lessons": [
+            {
+              "id": 8479,
+              "subject": "Концепции современного естествознания",
+              "teacher": "Усова Н.Н.",
+              "auditory": "2-423",
+              "type_lesson": "л.",
+              "time": 2,
+              "group": [
+                "526-1"
+              ]
+            },
+            {
+              "id": 8480,
+              "subject": "Иностранный язык",
+              "teacher": "Малышева Н.В.",
+              "auditory": "2-509",
+              "type_lesson": "пр.",
+              "time": 3,
+              "group": [
+                "526-1"
+              ]
+            },
+            {
+              "id": 8481,
+              "subject": "Основы программирования",
+              "teacher": "Кулагин Д.А.",
+              "auditory": "2-502",
+              "type_lesson": "лаб.",
+              "time": 4,
+              "group": [
+                "526-1"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 5,
+          "week_number": 11,
+          "lessons": [
+            {
+              "id": 8482,
+              "subject": "История России",
+              "teacher": "Ремизов Е.И.",
+              "auditory": "2-403",
+              "type_lesson": "пр.",
+              "time": 1,
+              "group": [
+                "526-1"
+              ]
+            },
+            {
+              "id": 8483,
+              "subject": "Основы командной работы",
+              "teacher": "Ильина Н.А.",
+              "auditory": "2-221",
+              "type_lesson": "л.",
+              "time": 2,
+              "group": [
+                "526-1"
+              ]
+            },
+            {
+              "id": 8484,
+              "subject": "Введение в учебную и исследовательскую деятельность",
+              "teacher": "Ильина Н.А.",
+              "auditory": "2-221",
+              "type_lesson": "пр.",
+              "time": 3,
+              "group": [
+                "526-1"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 6,
+          "week_number": 11,
+          "lessons": null
+        },
+        {
+          "weekday": 1,
+          "week_number": 0,
+          "lessons": null
+        }
+      ],
+      "dates": {
+        "current_date": "6.11.2026",
+        "date_start": "9.11.2026",
+        "date_end": "14.11.2026",
+        "dates": [
+          {
+            "date": "9.11.2026",
+            "weekday": 1
+          },
+          {
+            "date": "10.11.2026",
+            "weekday": 2
+          },
+          {
+            "date": "11.11.2026",
+            "weekday": 3
+          },
+          {
+            "date": "12.11.2026",
+            "weekday": 4
+          },
+          {
+            "date": "13.11.2026",
+            "weekday": 5
+          },
+          {
+            "date": "14.11.2026",
+            "weekday": 6
+          }
+        ]
+      },
+      "day_time": "13:40-15:10"
+    },
+    {
+      "week_number": 12,
+      "days": [
+        {
+          "weekday": 1,
+          "week_number": 12,
+          "lessons": [
+            {
+              "id": 8485,
+              "subject": "Теоретическая информатика",
+              "teacher": "Соснин Е.А.",
+              "auditory": "2-423",
+              "type_lesson": "л.",
+              "time": 2,
+              "group": [
+                "526-1"
+              ]
+            },
+            {
+              "id": 8486,
+              "subject": "История России",
+              "teacher": "Плотников А.А.",
+              "auditory": "2-523",
+              "type_lesson": "л.",
+              "time": 3,
+              "group": [
+                "526-1"
+              ]
+            },
+            {
+              "id": 8487,
+              "subject": "Математика. Линейная алгебра",
+              "teacher": "Кравченко О.В.",
+              "auditory": "2-423",
+              "type_lesson": "л.",
+              "time": 4,
+              "group": [
+                "526-1"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 2,
+          "week_number": 12,
+          "lessons": [
+            {
+              "id": 8488,
+              "subject": "Основы программирования",
+              "teacher": "Егоров М.Ф.",
+              "auditory": "2-423",
+              "type_lesson": "л.",
+              "time": 1,
+              "group": [
+                "526-1"
+              ]
+            },
+            {
+              "id": 8489,
+              "subject": "Введение в учебную и исследовательскую деятельность",
+              "teacher": "Ильина Н.А.",
+              "auditory": "2-221",
+              "type_lesson": "л.",
+              "time": 2,
+              "group": [
+                "526-1"
+              ]
+            },
+            {
+              "id": 8490,
+              "subject": "Основы проектной деятельности",
+              "teacher": "Дорофеев И.В.",
+              "auditory": "2-606",
+              "type_lesson": "пр.",
+              "time": 3,
+              "group": [
+                "526-1"
+              ]
+            },
+            {
+              "id": 8491,
+              "subject": "Математика. Линейная алгебра",
+              "teacher": "Кравченко О.В.",
+              "auditory": "2-402",
+              "type_lesson": "пр.",
+              "time": 4,
+              "group": [
+                "526-1"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 3,
+          "week_number": 12,
+          "lessons": [
+            {
+              "id": 8492,
+              "subject": "Теоретическая информатика",
+              "teacher": "Лапина А.В.",
+              "auditory": "2-606",
+              "type_lesson": "лаб.",
+              "time": 1,
+              "group": [
+                "526-1"
+              ]
+            },
+            {
+              "id": 8493,
+              "subject": "Математика. Линейная алгебра",
+              "teacher": "Кравченко О.В.",
+              "auditory": "2-406",
+              "type_lesson": "пр.",
+              "time": 2,
+              "group": [
+                "526-1"
+              ]
+            },
+            {
+              "id": 8494,
+              "subject": "Общая и прикладная физическая подготовка",
+              "teacher": "Щербаков О.С.",
+              "auditory": "17-СЗ",
+              "type_lesson": "пр.",
+              "time": 3,
+              "group": [
+                "526-1"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 4,
+          "week_number": 12,
+          "lessons": [
+            {
+              "id": 8495,
+              "subject": "Концепции современного естествознания",
+              "teacher": "Усова Н.Н.",
+              "auditory": "2-423",
+              "type_lesson": "л.",
+              "time": 2,
+              "group": [
+                "526-1"
+              ]
+            },
+            {
+              "id": 8496,
+              "subject": "Иностранный язык",
+              "teacher": "Малышева Н.В.",
+              "auditory": "2-509",
+              "type_lesson": "пр.",
+              "time": 3,
+              "group": [
+                "526-1"
+              ]
+            },
+            {
+              "id": 8497,
+              "subject": "Основы программирования",
+              "teacher": "Кулагин Д.А.",
+              "auditory": "2-502",
+              "type_lesson": "лаб.",
+              "time": 4,
+              "group": [
+                "526-1"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 5,
+          "week_number": 12,
+          "lessons": [
+            {
+              "id": 8498,
+              "subject": "История России",
+              "teacher": "Ремизов Е.И.",
+              "auditory": "2-403",
+              "type_lesson": "пр.",
+              "time": 1,
+              "group": [
+                "526-1"
+              ]
+            },
+            {
+              "id": 8499,
+              "subject": "Основы командной работы",
+              "teacher": "Ильина Н.А.",
+              "auditory": "2-221",
+              "type_lesson": "л.",
+              "time": 2,
+              "group": [
+                "526-1"
+              ]
+            },
+            {
+              "id": 8500,
+              "subject": "Введение в учебную и исследовательскую деятельность",
+              "teacher": "Ильина Н.А.",
+              "auditory": "2-221",
+              "type_lesson": "пр.",
+              "time": 3,
+              "group": [
+                "526-1"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 6,
+          "week_number": 12,
+          "lessons": null
+        },
+        {
+          "weekday": 1,
+          "week_number": 0,
+          "lessons": null
+        }
+      ],
+      "dates": {
+        "current_date": "6.11.2026",
+        "date_start": "16.11.2026",
+        "date_end": "21.11.2026",
+        "dates": [
+          {
+            "date": "16.11.2026",
+            "weekday": 1
+          },
+          {
+            "date": "17.11.2026",
+            "weekday": 2
+          },
+          {
+            "date": "18.11.2026",
+            "weekday": 3
+          },
+          {
+            "date": "19.11.2026",
+            "weekday": 4
+          },
+          {
+            "date": "20.11.2026",
+            "weekday": 5
+          },
+          {
+            "date": "21.11.2026",
+            "weekday": 6
+          }
+        ]
+      },
+      "day_time": "13:40-15:10"
+    },
+    {
+      "week_number": 10,
+      "days": [
+        {
+          "weekday": 1,
+          "week_number": 10,
+          "lessons": [
+            {
+              "id": 9001,
+              "subject": "Математика. Линейная алгебра",
+              "teacher": "Кравченко О.В.",
+              "auditory": "2-406",
+              "type_lesson": "л.",
+              "time": 1,
+              "group": [
+                "526-2"
+              ]
+            },
+            {
+              "id": 9002,
+              "subject": "Базы данных",
+              "teacher": "Провоторов С.Н.",
+              "auditory": "2-410",
+              "type_lesson": "л.",
+              "time": 2,
+              "group": [
+                "526-2"
+              ]
+            },
+            {
+              "id": 9003,
+              "subject": "Основы программирования",
+              "teacher": "Егоров М.Ф.",
+              "auditory": "2-502",
+              "type_lesson": "л.",
+              "time": 4,
+              "group": [
+                "526-2"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 2,
+          "week_number": 10,
+          "lessons": [
+            {
+              "id": 9004,
+              "subject": "Теоретическая информатика",
+              "teacher": "Соснин Е.А.",
+              "auditory": "2-423",
+              "type_lesson": "л.",
+              "time": 1,
+              "group": [
+                "526-2"
+              ]
+            },
+            {
+              "id": 9005,
+              "subject": "Дискретная математика",
+              "teacher": "Гринёва М.С.",
+              "auditory": "2-406",
+              "type_lesson": "л.",
+              "time": 3,
+              "group": [
+                "526-2"
+              ]
+            },
+            {
+              "id": 9006,
+              "subject": "Теоретическая информатика",
+              "teacher": "Лапина А.В.",
+              "auditory": "2-606",
+              "type_lesson": "лаб.",
+              "time": 4,
+              "group": [
+                "526-2"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 3,
+          "week_number": 10,
+          "lessons": null
+        },
+        {
+          "weekday": 4,
+          "week_number": 10,
+          "lessons": [
+            {
+              "id": 9007,
+              "subject": "Компьютерные сети",
+              "teacher": "Астахов Р.В.",
+              "auditory": "2-418",
+              "type_lesson": "л.",
+              "time": 1,
+              "group": [
+                "526-2"
+              ]
+            },
+            {
+              "id": 9008,
+              "subject": "Введение в учебную и исследовательскую деятельность",
+              "teacher": "Ильина Н.А.",
+              "auditory": "2-221",
+              "type_lesson": "л.",
+              "time": 2,
+              "group": [
+                "526-2"
+              ]
+            },
+            {
+              "id": 9009,
+              "subject": "Базы данных",
+              "teacher": "Провоторов С.Н.",
+              "auditory": "2-410",
+              "type_lesson": "лаб.",
+              "time": 3,
+              "group": [
+                "526-2"
+              ]
+            },
+            {
+              "id": 9010,
+              "subject": "Веб-разработка",
+              "teacher": "Медведева Т.Л.",
+              "auditory": "2-415",
+              "type_lesson": "лаб.",
+              "time": 4,
+              "group": [
+                "526-2"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 5,
+          "week_number": 10,
+          "lessons": [
+            {
+              "id": 9011,
+              "subject": "Основы командной работы",
+              "teacher": "Ильина Н.А.",
+              "auditory": "2-221",
+              "type_lesson": "л.",
+              "time": 2,
+              "group": [
+                "526-2"
+              ]
+            },
+            {
+              "id": 9012,
+              "subject": "История России",
+              "teacher": "Плотников А.А.",
+              "auditory": "2-523",
+              "type_lesson": "л.",
+              "time": 3,
+              "group": [
+                "526-2"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 6,
+          "week_number": 10,
+          "lessons": null
+        },
+        {
+          "weekday": 1,
+          "week_number": 0,
+          "lessons": null
+        }
+      ],
+      "dates": {
+        "current_date": "6.11.2026",
+        "date_start": "2.11.2026",
+        "date_end": "7.11.2026",
+        "dates": [
+          {
+            "date": "2.11.2026",
+            "weekday": 1
+          },
+          {
+            "date": "3.11.2026",
+            "weekday": 2
+          },
+          {
+            "date": "4.11.2026",
+            "weekday": 3
+          },
+          {
+            "date": "5.11.2026",
+            "weekday": 4
+          },
+          {
+            "date": "6.11.2026",
+            "weekday": 5
+          },
+          {
+            "date": "7.11.2026",
+            "weekday": 6
+          }
+        ]
+      },
+      "day_time": "13:40-15:10"
+    },
+    {
+      "week_number": 11,
+      "days": [
+        {
+          "weekday": 1,
+          "week_number": 11,
+          "lessons": [
+            {
+              "id": 9013,
+              "subject": "Математика. Линейная алгебра",
+              "teacher": "Кравченко О.В.",
+              "auditory": "2-406",
+              "type_lesson": "л.",
+              "time": 1,
+              "group": [
+                "526-2"
+              ]
+            },
+            {
+              "id": 9014,
+              "subject": "Базы данных",
+              "teacher": "Провоторов С.Н.",
+              "auditory": "2-410",
+              "type_lesson": "л.",
+              "time": 2,
+              "group": [
+                "526-2"
+              ]
+            },
+            {
+              "id": 9015,
+              "subject": "Основы программирования",
+              "teacher": "Егоров М.Ф.",
+              "auditory": "2-502",
+              "type_lesson": "л.",
+              "time": 4,
+              "group": [
+                "526-2"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 2,
+          "week_number": 11,
+          "lessons": [
+            {
+              "id": 9016,
+              "subject": "Теоретическая информатика",
+              "teacher": "Соснин Е.А.",
+              "auditory": "2-423",
+              "type_lesson": "л.",
+              "time": 1,
+              "group": [
+                "526-2"
+              ]
+            },
+            {
+              "id": 9017,
+              "subject": "Дискретная математика",
+              "teacher": "Гринёва М.С.",
+              "auditory": "2-406",
+              "type_lesson": "л.",
+              "time": 3,
+              "group": [
+                "526-2"
+              ]
+            },
+            {
+              "id": 9018,
+              "subject": "Теоретическая информатика",
+              "teacher": "Лапина А.В.",
+              "auditory": "2-606",
+              "type_lesson": "лаб.",
+              "time": 4,
+              "group": [
+                "526-2"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 3,
+          "week_number": 11,
+          "lessons": [
+            {
+              "id": 9019,
+              "subject": "Иностранный язык",
+              "teacher": "Малышева Н.В.",
+              "auditory": "2-509",
+              "type_lesson": "пр.",
+              "time": 1,
+              "group": [
+                "526-2"
+              ]
+            },
+            {
+              "id": 9020,
+              "subject": "Математика. Линейная алгебра",
+              "teacher": "Кравченко О.В.",
+              "auditory": "2-406",
+              "type_lesson": "пр.",
+              "time": 2,
+              "group": [
+                "526-2"
+              ]
+            },
+            {
+              "id": 9021,
+              "subject": "Общая и прикладная физическая подготовка",
+              "teacher": "Щербаков О.С.",
+              "auditory": "17-СЗ",
+              "type_lesson": "пр.",
+              "time": 3,
+              "group": [
+                "526-2"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 4,
+          "week_number": 11,
+          "lessons": [
+            {
+              "id": 9022,
+              "subject": "Компьютерные сети",
+              "teacher": "Астахов Р.В.",
+              "auditory": "2-418",
+              "type_lesson": "л.",
+              "time": 1,
+              "group": [
+                "526-2"
+              ]
+            },
+            {
+              "id": 9023,
+              "subject": "Введение в учебную и исследовательскую деятельность",
+              "teacher": "Ильина Н.А.",
+              "auditory": "2-221",
+              "type_lesson": "л.",
+              "time": 2,
+              "group": [
+                "526-2"
+              ]
+            },
+            {
+              "id": 9024,
+              "subject": "Базы данных",
+              "teacher": "Провоторов С.Н.",
+              "auditory": "2-410",
+              "type_lesson": "лаб.",
+              "time": 3,
+              "group": [
+                "526-2"
+              ]
+            },
+            {
+              "id": 9025,
+              "subject": "Веб-разработка",
+              "teacher": "Медведева Т.Л.",
+              "auditory": "2-415",
+              "type_lesson": "лаб.",
+              "time": 4,
+              "group": [
+                "526-2"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 5,
+          "week_number": 11,
+          "lessons": [
+            {
+              "id": 9026,
+              "subject": "Основы командной работы",
+              "teacher": "Ильина Н.А.",
+              "auditory": "2-221",
+              "type_lesson": "л.",
+              "time": 2,
+              "group": [
+                "526-2"
+              ]
+            },
+            {
+              "id": 9027,
+              "subject": "История России",
+              "teacher": "Плотников А.А.",
+              "auditory": "2-523",
+              "type_lesson": "л.",
+              "time": 3,
+              "group": [
+                "526-2"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 6,
+          "week_number": 11,
+          "lessons": null
+        },
+        {
+          "weekday": 1,
+          "week_number": 0,
+          "lessons": null
+        }
+      ],
+      "dates": {
+        "current_date": "6.11.2026",
+        "date_start": "9.11.2026",
+        "date_end": "14.11.2026",
+        "dates": [
+          {
+            "date": "9.11.2026",
+            "weekday": 1
+          },
+          {
+            "date": "10.11.2026",
+            "weekday": 2
+          },
+          {
+            "date": "11.11.2026",
+            "weekday": 3
+          },
+          {
+            "date": "12.11.2026",
+            "weekday": 4
+          },
+          {
+            "date": "13.11.2026",
+            "weekday": 5
+          },
+          {
+            "date": "14.11.2026",
+            "weekday": 6
+          }
+        ]
+      },
+      "day_time": "13:40-15:10"
+    },
+    {
+      "week_number": 12,
+      "days": [
+        {
+          "weekday": 1,
+          "week_number": 12,
+          "lessons": [
+            {
+              "id": 9028,
+              "subject": "Математика. Линейная алгебра",
+              "teacher": "Кравченко О.В.",
+              "auditory": "2-406",
+              "type_lesson": "л.",
+              "time": 1,
+              "group": [
+                "526-2"
+              ]
+            },
+            {
+              "id": 9029,
+              "subject": "Базы данных",
+              "teacher": "Провоторов С.Н.",
+              "auditory": "2-410",
+              "type_lesson": "л.",
+              "time": 2,
+              "group": [
+                "526-2"
+              ]
+            },
+            {
+              "id": 9030,
+              "subject": "Основы программирования",
+              "teacher": "Егоров М.Ф.",
+              "auditory": "2-502",
+              "type_lesson": "л.",
+              "time": 4,
+              "group": [
+                "526-2"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 2,
+          "week_number": 12,
+          "lessons": [
+            {
+              "id": 9031,
+              "subject": "Теоретическая информатика",
+              "teacher": "Соснин Е.А.",
+              "auditory": "2-423",
+              "type_lesson": "л.",
+              "time": 1,
+              "group": [
+                "526-2"
+              ]
+            },
+            {
+              "id": 9032,
+              "subject": "Дискретная математика",
+              "teacher": "Гринёва М.С.",
+              "auditory": "2-406",
+              "type_lesson": "л.",
+              "time": 3,
+              "group": [
+                "526-2"
+              ]
+            },
+            {
+              "id": 9033,
+              "subject": "Теоретическая информатика",
+              "teacher": "Лапина А.В.",
+              "auditory": "2-606",
+              "type_lesson": "лаб.",
+              "time": 4,
+              "group": [
+                "526-2"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 3,
+          "week_number": 12,
+          "lessons": [
+            {
+              "id": 9034,
+              "subject": "Иностранный язык",
+              "teacher": "Малышева Н.В.",
+              "auditory": "2-509",
+              "type_lesson": "пр.",
+              "time": 1,
+              "group": [
+                "526-2"
+              ]
+            },
+            {
+              "id": 9035,
+              "subject": "Математика. Линейная алгебра",
+              "teacher": "Кравченко О.В.",
+              "auditory": "2-406",
+              "type_lesson": "пр.",
+              "time": 2,
+              "group": [
+                "526-2"
+              ]
+            },
+            {
+              "id": 9036,
+              "subject": "Общая и прикладная физическая подготовка",
+              "teacher": "Щербаков О.С.",
+              "auditory": "17-СЗ",
+              "type_lesson": "пр.",
+              "time": 3,
+              "group": [
+                "526-2"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 4,
+          "week_number": 12,
+          "lessons": [
+            {
+              "id": 9037,
+              "subject": "Компьютерные сети",
+              "teacher": "Астахов Р.В.",
+              "auditory": "2-418",
+              "type_lesson": "л.",
+              "time": 1,
+              "group": [
+                "526-2"
+              ]
+            },
+            {
+              "id": 9038,
+              "subject": "Введение в учебную и исследовательскую деятельность",
+              "teacher": "Ильина Н.А.",
+              "auditory": "2-221",
+              "type_lesson": "л.",
+              "time": 2,
+              "group": [
+                "526-2"
+              ]
+            },
+            {
+              "id": 9039,
+              "subject": "Базы данных",
+              "teacher": "Провоторов С.Н.",
+              "auditory": "2-410",
+              "type_lesson": "лаб.",
+              "time": 3,
+              "group": [
+                "526-2"
+              ]
+            },
+            {
+              "id": 9040,
+              "subject": "Веб-разработка",
+              "teacher": "Медведева Т.Л.",
+              "auditory": "2-415",
+              "type_lesson": "лаб.",
+              "time": 4,
+              "group": [
+                "526-2"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 5,
+          "week_number": 12,
+          "lessons": [
+            {
+              "id": 9041,
+              "subject": "Основы командной работы",
+              "teacher": "Ильина Н.А.",
+              "auditory": "2-221",
+              "type_lesson": "л.",
+              "time": 2,
+              "group": [
+                "526-2"
+              ]
+            },
+            {
+              "id": 9042,
+              "subject": "История России",
+              "teacher": "Плотников А.А.",
+              "auditory": "2-523",
+              "type_lesson": "л.",
+              "time": 3,
+              "group": [
+                "526-2"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 6,
+          "week_number": 12,
+          "lessons": null
+        },
+        {
+          "weekday": 1,
+          "week_number": 0,
+          "lessons": null
+        }
+      ],
+      "dates": {
+        "current_date": "6.11.2026",
+        "date_start": "16.11.2026",
+        "date_end": "21.11.2026",
+        "dates": [
+          {
+            "date": "16.11.2026",
+            "weekday": 1
+          },
+          {
+            "date": "17.11.2026",
+            "weekday": 2
+          },
+          {
+            "date": "18.11.2026",
+            "weekday": 3
+          },
+          {
+            "date": "19.11.2026",
+            "weekday": 4
+          },
+          {
+            "date": "20.11.2026",
+            "weekday": 5
+          },
+          {
+            "date": "21.11.2026",
+            "weekday": 6
+          }
+        ]
+      },
+      "day_time": "13:40-15:10"
+    },
+    {
+      "week_number": 10,
+      "days": [
+        {
+          "weekday": 1,
+          "week_number": 10,
+          "lessons": [
+            {
+              "id": 9201,
+              "subject": "История России",
+              "teacher": "Плотников А.А.",
+              "auditory": "2-523",
+              "type_lesson": "л.",
+              "time": 1,
+              "group": [
+                "526-3"
+              ]
+            },
+            {
+              "id": 9202,
+              "subject": "Основы программирования",
+              "teacher": "Егоров М.Ф.",
+              "auditory": "2-502",
+              "type_lesson": "пр.",
+              "time": 3,
+              "group": [
+                "526-3"
+              ]
+            },
+            {
+              "id": 9203,
+              "subject": "Математика. Линейная алгебра",
+              "teacher": "Кравченко О.В.",
+              "auditory": "2-406",
+              "type_lesson": "л.",
+              "time": 4,
+              "group": [
+                "526-3"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 2,
+          "week_number": 10,
+          "lessons": [
+            {
+              "id": 9204,
+              "subject": "Иностранный язык",
+              "teacher": "Малышева Н.В.",
+              "auditory": "2-509",
+              "type_lesson": "пр.",
+              "time": 2,
+              "group": [
+                "526-3"
+              ]
+            },
+            {
+              "id": 9205,
+              "subject": "Веб-разработка",
+              "teacher": "Медведева Т.Л.",
+              "auditory": "2-415",
+              "type_lesson": "лаб.",
+              "time": 3,
+              "group": [
+                "526-3"
+              ]
+            },
+            {
+              "id": 9206,
+              "subject": "Основы командной работы",
+              "teacher": "Ильина Н.А.",
+              "auditory": "2-221",
+              "type_lesson": "л.",
+              "time": 4,
+              "group": [
+                "526-3"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 3,
+          "week_number": 10,
+          "lessons": null
+        },
+        {
+          "weekday": 4,
+          "week_number": 10,
+          "lessons": [
+            {
+              "id": 9207,
+              "subject": "Математика. Линейная алгебра",
+              "teacher": "Кравченко О.В.",
+              "auditory": "2-406",
+              "type_lesson": "пр.",
+              "time": 1,
+              "group": [
+                "526-3"
+              ]
+            },
+            {
+              "id": 9208,
+              "subject": "Компьютерные сети",
+              "teacher": "Астахов Р.В.",
+              "auditory": "2-418",
+              "type_lesson": "л.",
+              "time": 2,
+              "group": [
+                "526-3"
+              ]
+            },
+            {
+              "id": 9209,
+              "subject": "Дискретная математика",
+              "teacher": "Гринёва М.С.",
+              "auditory": "2-406",
+              "type_lesson": "пр.",
+              "time": 3,
+              "group": [
+                "526-3"
+              ]
+            },
+            {
+              "id": 9210,
+              "subject": "Базы данных",
+              "teacher": "Провоторов С.Н.",
+              "auditory": "2-410",
+              "type_lesson": "лаб.",
+              "time": 4,
+              "group": [
+                "526-3"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 5,
+          "week_number": 10,
+          "lessons": [
+            {
+              "id": 9211,
+              "subject": "Введение в учебную и исследовательскую деятельность",
+              "teacher": "Ильина Н.А.",
+              "auditory": "2-221",
+              "type_lesson": "пр.",
+              "time": 1,
+              "group": [
+                "526-3"
+              ]
+            },
+            {
+              "id": 9212,
+              "subject": "История России",
+              "teacher": "Ремизов Е.И.",
+              "auditory": "2-403",
+              "type_lesson": "пр.",
+              "time": 3,
+              "group": [
+                "526-3"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 6,
+          "week_number": 10,
+          "lessons": null
+        },
+        {
+          "weekday": 1,
+          "week_number": 0,
+          "lessons": null
+        }
+      ],
+      "dates": {
+        "current_date": "6.11.2026",
+        "date_start": "2.11.2026",
+        "date_end": "7.11.2026",
+        "dates": [
+          {
+            "date": "2.11.2026",
+            "weekday": 1
+          },
+          {
+            "date": "3.11.2026",
+            "weekday": 2
+          },
+          {
+            "date": "4.11.2026",
+            "weekday": 3
+          },
+          {
+            "date": "5.11.2026",
+            "weekday": 4
+          },
+          {
+            "date": "6.11.2026",
+            "weekday": 5
+          },
+          {
+            "date": "7.11.2026",
+            "weekday": 6
+          }
+        ]
+      },
+      "day_time": "13:40-15:10"
+    },
+    {
+      "week_number": 11,
+      "days": [
+        {
+          "weekday": 1,
+          "week_number": 11,
+          "lessons": [
+            {
+              "id": 9213,
+              "subject": "История России",
+              "teacher": "Плотников А.А.",
+              "auditory": "2-523",
+              "type_lesson": "л.",
+              "time": 1,
+              "group": [
+                "526-3"
+              ]
+            },
+            {
+              "id": 9214,
+              "subject": "Основы программирования",
+              "teacher": "Егоров М.Ф.",
+              "auditory": "2-502",
+              "type_lesson": "пр.",
+              "time": 3,
+              "group": [
+                "526-3"
+              ]
+            },
+            {
+              "id": 9215,
+              "subject": "Математика. Линейная алгебра",
+              "teacher": "Кравченко О.В.",
+              "auditory": "2-406",
+              "type_lesson": "л.",
+              "time": 4,
+              "group": [
+                "526-3"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 2,
+          "week_number": 11,
+          "lessons": [
+            {
+              "id": 9216,
+              "subject": "Иностранный язык",
+              "teacher": "Малышева Н.В.",
+              "auditory": "2-509",
+              "type_lesson": "пр.",
+              "time": 2,
+              "group": [
+                "526-3"
+              ]
+            },
+            {
+              "id": 9217,
+              "subject": "Веб-разработка",
+              "teacher": "Медведева Т.Л.",
+              "auditory": "2-415",
+              "type_lesson": "лаб.",
+              "time": 3,
+              "group": [
+                "526-3"
+              ]
+            },
+            {
+              "id": 9218,
+              "subject": "Основы командной работы",
+              "teacher": "Ильина Н.А.",
+              "auditory": "2-221",
+              "type_lesson": "л.",
+              "time": 4,
+              "group": [
+                "526-3"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 3,
+          "week_number": 11,
+          "lessons": [
+            {
+              "id": 9219,
+              "subject": "Основы проектной деятельности",
+              "teacher": "Дорофеев И.В.",
+              "auditory": "2-606",
+              "type_lesson": "пр.",
+              "time": 1,
+              "group": [
+                "526-3"
+              ]
+            },
+            {
+              "id": 9220,
+              "subject": "Общая и прикладная физическая подготовка",
+              "teacher": "Щербаков О.С.",
+              "auditory": "17-СЗ",
+              "type_lesson": "пр.",
+              "time": 2,
+              "group": [
+                "526-3"
+              ]
+            },
+            {
+              "id": 9221,
+              "subject": "Теоретическая информатика",
+              "teacher": "Соснин Е.А.",
+              "auditory": "2-423",
+              "type_lesson": "л.",
+              "time": 3,
+              "group": [
+                "526-3"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 4,
+          "week_number": 11,
+          "lessons": [
+            {
+              "id": 9222,
+              "subject": "Математика. Линейная алгебра",
+              "teacher": "Кравченко О.В.",
+              "auditory": "2-406",
+              "type_lesson": "пр.",
+              "time": 1,
+              "group": [
+                "526-3"
+              ]
+            },
+            {
+              "id": 9223,
+              "subject": "Компьютерные сети",
+              "teacher": "Астахов Р.В.",
+              "auditory": "2-418",
+              "type_lesson": "л.",
+              "time": 2,
+              "group": [
+                "526-3"
+              ]
+            },
+            {
+              "id": 9224,
+              "subject": "Дискретная математика",
+              "teacher": "Гринёва М.С.",
+              "auditory": "2-406",
+              "type_lesson": "пр.",
+              "time": 3,
+              "group": [
+                "526-3"
+              ]
+            },
+            {
+              "id": 9225,
+              "subject": "Базы данных",
+              "teacher": "Провоторов С.Н.",
+              "auditory": "2-410",
+              "type_lesson": "лаб.",
+              "time": 4,
+              "group": [
+                "526-3"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 5,
+          "week_number": 11,
+          "lessons": [
+            {
+              "id": 9226,
+              "subject": "Введение в учебную и исследовательскую деятельность",
+              "teacher": "Ильина Н.А.",
+              "auditory": "2-221",
+              "type_lesson": "пр.",
+              "time": 1,
+              "group": [
+                "526-3"
+              ]
+            },
+            {
+              "id": 9227,
+              "subject": "История России",
+              "teacher": "Ремизов Е.И.",
+              "auditory": "2-403",
+              "type_lesson": "пр.",
+              "time": 3,
+              "group": [
+                "526-3"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 6,
+          "week_number": 11,
+          "lessons": null
+        },
+        {
+          "weekday": 1,
+          "week_number": 0,
+          "lessons": null
+        }
+      ],
+      "dates": {
+        "current_date": "6.11.2026",
+        "date_start": "9.11.2026",
+        "date_end": "14.11.2026",
+        "dates": [
+          {
+            "date": "9.11.2026",
+            "weekday": 1
+          },
+          {
+            "date": "10.11.2026",
+            "weekday": 2
+          },
+          {
+            "date": "11.11.2026",
+            "weekday": 3
+          },
+          {
+            "date": "12.11.2026",
+            "weekday": 4
+          },
+          {
+            "date": "13.11.2026",
+            "weekday": 5
+          },
+          {
+            "date": "14.11.2026",
+            "weekday": 6
+          }
+        ]
+      },
+      "day_time": "13:40-15:10"
+    },
+    {
+      "week_number": 12,
+      "days": [
+        {
+          "weekday": 1,
+          "week_number": 12,
+          "lessons": [
+            {
+              "id": 9228,
+              "subject": "История России",
+              "teacher": "Плотников А.А.",
+              "auditory": "2-523",
+              "type_lesson": "л.",
+              "time": 1,
+              "group": [
+                "526-3"
+              ]
+            },
+            {
+              "id": 9229,
+              "subject": "Основы программирования",
+              "teacher": "Егоров М.Ф.",
+              "auditory": "2-502",
+              "type_lesson": "пр.",
+              "time": 3,
+              "group": [
+                "526-3"
+              ]
+            },
+            {
+              "id": 9230,
+              "subject": "Математика. Линейная алгебра",
+              "teacher": "Кравченко О.В.",
+              "auditory": "2-406",
+              "type_lesson": "л.",
+              "time": 4,
+              "group": [
+                "526-3"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 2,
+          "week_number": 12,
+          "lessons": [
+            {
+              "id": 9231,
+              "subject": "Иностранный язык",
+              "teacher": "Малышева Н.В.",
+              "auditory": "2-509",
+              "type_lesson": "пр.",
+              "time": 2,
+              "group": [
+                "526-3"
+              ]
+            },
+            {
+              "id": 9232,
+              "subject": "Веб-разработка",
+              "teacher": "Медведева Т.Л.",
+              "auditory": "2-415",
+              "type_lesson": "лаб.",
+              "time": 3,
+              "group": [
+                "526-3"
+              ]
+            },
+            {
+              "id": 9233,
+              "subject": "Основы командной работы",
+              "teacher": "Ильина Н.А.",
+              "auditory": "2-221",
+              "type_lesson": "л.",
+              "time": 4,
+              "group": [
+                "526-3"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 3,
+          "week_number": 12,
+          "lessons": [
+            {
+              "id": 9234,
+              "subject": "Основы проектной деятельности",
+              "teacher": "Дорофеев И.В.",
+              "auditory": "2-606",
+              "type_lesson": "пр.",
+              "time": 1,
+              "group": [
+                "526-3"
+              ]
+            },
+            {
+              "id": 9235,
+              "subject": "Общая и прикладная физическая подготовка",
+              "teacher": "Щербаков О.С.",
+              "auditory": "17-СЗ",
+              "type_lesson": "пр.",
+              "time": 2,
+              "group": [
+                "526-3"
+              ]
+            },
+            {
+              "id": 9236,
+              "subject": "Теоретическая информатика",
+              "teacher": "Соснин Е.А.",
+              "auditory": "2-423",
+              "type_lesson": "л.",
+              "time": 3,
+              "group": [
+                "526-3"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 4,
+          "week_number": 12,
+          "lessons": [
+            {
+              "id": 9237,
+              "subject": "Математика. Линейная алгебра",
+              "teacher": "Кравченко О.В.",
+              "auditory": "2-406",
+              "type_lesson": "пр.",
+              "time": 1,
+              "group": [
+                "526-3"
+              ]
+            },
+            {
+              "id": 9238,
+              "subject": "Компьютерные сети",
+              "teacher": "Астахов Р.В.",
+              "auditory": "2-418",
+              "type_lesson": "л.",
+              "time": 2,
+              "group": [
+                "526-3"
+              ]
+            },
+            {
+              "id": 9239,
+              "subject": "Дискретная математика",
+              "teacher": "Гринёва М.С.",
+              "auditory": "2-406",
+              "type_lesson": "пр.",
+              "time": 3,
+              "group": [
+                "526-3"
+              ]
+            },
+            {
+              "id": 9240,
+              "subject": "Базы данных",
+              "teacher": "Провоторов С.Н.",
+              "auditory": "2-410",
+              "type_lesson": "лаб.",
+              "time": 4,
+              "group": [
+                "526-3"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 5,
+          "week_number": 12,
+          "lessons": [
+            {
+              "id": 9241,
+              "subject": "Введение в учебную и исследовательскую деятельность",
+              "teacher": "Ильина Н.А.",
+              "auditory": "2-221",
+              "type_lesson": "пр.",
+              "time": 1,
+              "group": [
+                "526-3"
+              ]
+            },
+            {
+              "id": 9242,
+              "subject": "История России",
+              "teacher": "Ремизов Е.И.",
+              "auditory": "2-403",
+              "type_lesson": "пр.",
+              "time": 3,
+              "group": [
+                "526-3"
+              ]
+            }
+          ]
+        },
+        {
+          "weekday": 6,
+          "week_number": 12,
+          "lessons": null
+        },
+        {
+          "weekday": 1,
+          "week_number": 0,
+          "lessons": null
+        }
+      ],
+      "dates": {
+        "current_date": "6.11.2026",
+        "date_start": "16.11.2026",
+        "date_end": "21.11.2026",
+        "dates": [
+          {
+            "date": "16.11.2026",
+            "weekday": 1
+          },
+          {
+            "date": "17.11.2026",
+            "weekday": 2
+          },
+          {
+            "date": "18.11.2026",
+            "weekday": 3
+          },
+          {
+            "date": "19.11.2026",
+            "weekday": 4
+          },
+          {
+            "date": "20.11.2026",
+            "weekday": 5
+          },
+          {
+            "date": "21.11.2026",
+            "weekday": 6
+          }
+        ]
+      },
+      "day_time": "13:40-15:10"
+    }
+  ]
+}
