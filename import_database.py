@@ -61,7 +61,9 @@ CREATE TABLE users (
     id INTEGER PRIMARY KEY,
     login TEXT NOT NULL,
     password_hash TEXT NOT NULL,
-    role TEXT NOT NULL CHECK (role IN ('admin','teacher','head','student'))
+    role TEXT NOT NULL CHECK (role IN ('admin','teacher','head','student')),
+    student_id TEXT REFERENCES students(student_id) DEFAULT NULL,
+    teacher_id INTEGER REFERENCES teachers(id) DEFAULT NULL
 );
 """)
 
