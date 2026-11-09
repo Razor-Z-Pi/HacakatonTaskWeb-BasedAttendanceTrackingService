@@ -17,7 +17,6 @@ import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 
 import type { AttendanceStat, JournalEntry, Meta, Student } from '../types';
 import { api, ApiError } from '../api/client';
-import { generateMedicalCertificate } from '../utils/pdfDocs';
 import { JournalCalendar } from '../components/JournalCalendar';
 
 const ALL_SUBJECTS = 'Все предметы';
@@ -135,8 +134,20 @@ const AnalyticsPage: React.FC = () => {
   const groups = meta?.groups ?? [];
   const subjects = meta?.subjects ?? [];
 
-  const handleReport = (format: 'xlsx' | 'pdf') => {
-    window.location.assign(api.analyticsReportUrl(format, analyticsFilters));
+  const handleReport = async (format: 'xlsx' | 'pdf') => {
+    try {
+      await api.downloadAnalyticsReport(format, analyticsFilters);
+    } catch (err) {
+      setError(err instanceof ApiError ? err.message : 'Не удалось сформировать отчёт.');
+    }
+  };
+
+  const handleCertificate = async (fio: string) => {
+    try {
+      await api.downloadCertificate(fio, new Date().toLocaleDateString('ru-RU'));
+    } catch (err) {
+      setError(err instanceof ApiError ? err.message : 'Не удалось сформировать справку.');
+    }
   };
 
   return (
@@ -180,10 +191,10 @@ const AnalyticsPage: React.FC = () => {
         </Box>
 
         <Stack direction="row" spacing={1.5}>
-          <Button variant="outlined" color="success" startIcon={<FileDownloadIcon />} onClick={() => handleReport('xlsx')} disabled={loading}>
+          <Button variant="outlined" color="success" startIcon={<FileDownloadIcon />} onClick={() => void handleReport('xlsx')} disabled={loading}>
             Excel
           </Button>
-          <Button variant="contained" color="error" startIcon={<PictureAsPdfIcon />} onClick={() => handleReport('pdf')} disabled={loading}>
+          <Button variant="contained" color="error" startIcon={<PictureAsPdfIcon />} onClick={() => void handleReport('pdf')} disabled={loading}>
             PDF
           </Button>
         </Stack>
@@ -286,7 +297,7 @@ const AnalyticsPage: React.FC = () => {
                         </TableCell>
                         <TableCell align="right">
                           <Tooltip title="Справка">
-                            <IconButton color="primary" size="small" onClick={() => generateMedicalCertificate(row.fio, new Date().toLocaleDateString('ru-RU'))}>
+                            <IconButton color="primary" size="small" onClick={() => void handleCertificate(row.fio)}>
                               <DescriptionIcon fontSize="small" />
                             </IconButton>
                           </Tooltip>

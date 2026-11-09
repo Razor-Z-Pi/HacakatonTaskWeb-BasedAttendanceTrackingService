@@ -4,6 +4,7 @@ from django.urls import path
 from api.views import (
     AnalyticsReportView,
     AnalyticsView,
+    CertificateReportView,
     CheckInView,
     JournalView,
     LessonAttendanceView,
@@ -59,5 +60,10 @@ urlpatterns = [
         "api/reports/lessons/<int:pk>.<str:fmt>",
         LessonReportView.as_view(),
         name="lesson-report",
+    ),
+    path(
+        "api/reports/certificate.pdf",
+        CertificateReportView.as_view(),
+        name="certificate-report",
     ),
 ]

@@ -242,9 +242,17 @@ const AttendancePage: React.FC = () => {
     }
   };
 
-  const handleReport = (format: 'xlsx' | 'pdf') => {
+  const handleReport = async (format: 'xlsx' | 'pdf') => {
     if (!lesson) return;
-    window.location.assign(api.lessonReportUrl(lesson.id, format));
+    try {
+      await api.downloadLessonReport(lesson.id, format);
+    } catch (err) {
+      setSnackbar({
+        open: true,
+        message: err instanceof ApiError ? err.message : 'Не удалось сформировать отчёт.',
+        severity: 'error',
+      });
+    }
   };
 
   const markedCount = Object.keys(attendance).length;
@@ -337,10 +345,10 @@ const AttendancePage: React.FC = () => {
       <Paper elevation={4} sx={{ position: 'sticky', bottom: 16, p: 2, borderRadius: 3, display: 'flex', justifyContent: 'flex-end', gap: 2, border: 1, borderColor: 'divider', zIndex: 10 }}>
         {isSaved && (
           <>
-            <Button variant="outlined" color="success" startIcon={<FileDownloadIcon />} onClick={() => handleReport('xlsx')}>
+            <Button variant="outlined" color="success" startIcon={<FileDownloadIcon />} onClick={() => void handleReport('xlsx')}>
               Excel
             </Button>
-            <Button variant="outlined" color="error" startIcon={<FileDownloadIcon />} onClick={() => handleReport('pdf')}>
+            <Button variant="outlined" color="error" startIcon={<FileDownloadIcon />} onClick={() => void handleReport('pdf')}>
               PDF
             </Button>
           </>

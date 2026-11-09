@@ -17,7 +17,13 @@ from rest_framework.views import APIView
 
 from .importers import import_schedule
 from .models import Attendance, Group, Lesson, Student, Teacher
-from .reports import analytics_pdf, analytics_workbook, lesson_pdf, lesson_workbook
+from .reports import (
+    analytics_pdf,
+    analytics_workbook,
+    certificate_pdf,
+    lesson_pdf,
+    lesson_workbook,
+)
 from .serializers import (
     AttendanceRecordSerializer,
     AttendanceSubmitSerializer,
@@ -457,6 +463,23 @@ class LessonReportView(APIView):
         return _report_response(
             content,
             f"lesson_{lesson.id}_report.pdf",
+            "application/pdf",
+        )
+
+
+class CertificateReportView(APIView):
+    def get(self, request):
+        student_name = (request.query_params.get("fio") or "").strip()
+        date_text = (request.query_params.get("date") or "").strip()
+        if not student_name:
+            raise ValidationError({"fio": "Укажите ФИО студента."})
+        if not date_text:
+            date_text = datetime.now().strftime("%d.%m.%Y")
+
+        content = certificate_pdf(student_name, date_text)
+        return _report_response(
+            content,
+            f"Справка_{student_name}.pdf",
             "application/pdf",
         )
 

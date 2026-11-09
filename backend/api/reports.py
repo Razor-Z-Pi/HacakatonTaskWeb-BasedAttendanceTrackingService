@@ -1,6 +1,7 @@
 from datetime import date
 from io import BytesIO
 from pathlib import Path
+from xml.sax.saxutils import escape
 
 from django.conf import settings
 from openpyxl import Workbook
@@ -264,3 +265,84 @@ def lesson_pdf(lesson, students, status_map: dict[str, str]) -> bytes:
         landscape_mode=False,
         column_widths=[12 * mm, 80 * mm, 30 * mm, 40 * mm],
     )
+
+
+def certificate_pdf(student_name: str, date_text: str) -> bytes:
+    font = _ensure_font()
+    buffer = BytesIO()
+    document = SimpleDocTemplate(
+        buffer,
+        pagesize=A4,
+        leftMargin=20 * mm,
+        rightMargin=20 * mm,
+        topMargin=20 * mm,
+        bottomMargin=20 * mm,
+        title="Справка об отсутствии",
+    )
+
+    styles = getSampleStyleSheet()
+    header_style = ParagraphStyle(
+        "CertificateHeader",
+        parent=styles["Normal"],
+        fontName=font,
+        fontSize=13,
+        leading=18,
+        alignment=1,
+        spaceAfter=24,
+    )
+    title_style = ParagraphStyle(
+        "CertificateTitle",
+        parent=styles["Title"],
+        fontName=font,
+        fontSize=18,
+        leading=24,
+        alignment=1,
+        spaceAfter=24,
+    )
+    body_style = ParagraphStyle(
+        "CertificateBody",
+        parent=styles["Normal"],
+        fontName=font,
+        fontSize=12,
+        leading=20,
+        spaceAfter=10,
+    )
+    stamp_style = ParagraphStyle(
+        "CertificateStamp",
+        parent=styles["Normal"],
+        fontName=font,
+        fontSize=11,
+        leading=16,
+        alignment=1,
+        textColor=colors.HexColor("#B91C1C"),
+    )
+
+    stamp = Table(
+        [[Paragraph("ПЕЧАТЬ", stamp_style)]],
+        colWidths=[40 * mm],
+        rowHeights=[40 * mm],
+    )
+    stamp.setStyle(
+        TableStyle(
+            [
+                ("BOX", (0, 0), (-1, -1), 2, colors.HexColor("#B91C1C")),
+                ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+                ("ALIGN", (0, 0), (-1, -1), "CENTER"),
+            ]
+        )
+    )
+
+    story = [
+        Paragraph("МИНИСТЕРСТВО НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ РФ", header_style),
+        Paragraph("СПРАВКА ОБ ОТСУТСТВИИ", title_style),
+        Paragraph(f"Студент: {escape(student_name)}", body_style),
+        Paragraph(f"Дата: {escape(date_text)}", body_style),
+        Paragraph(
+            "Основание: уважительная причина (документально подтверждено)",
+            body_style,
+        ),
+        Spacer(1, 18 * mm),
+        stamp,
+    ]
+    document.build(story)
+    return buffer.getvalue()

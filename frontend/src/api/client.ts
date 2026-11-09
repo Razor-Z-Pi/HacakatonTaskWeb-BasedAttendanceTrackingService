@@ -107,6 +107,54 @@ async function request<T>(path: string, options: RequestOptions = {}): Promise<T
   return payload as T;
 }
 
+async function download(path: string, fallbackName: string): Promise<void> {
+  const headers = new Headers();
+  const token = localStorage.getItem('access_token');
+  if (token) {
+    headers.set('Authorization', `Bearer ${token}`);
+  }
+
+  const response = await fetch(`${BASE_URL}${path}`, { headers });
+  if (!response.ok) {
+    const text = await response.text();
+    let payload: unknown = null;
+    if (text) {
+      try {
+        payload = JSON.parse(text);
+      } catch {
+        payload = text;
+      }
+    }
+    if (response.status === 401) {
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('user');
+      if (window.location.pathname !== '/login') {
+        window.location.assign('/login');
+      }
+    }
+    throw new ApiError(errorMessage(payload, response.status), response.status);
+  }
+
+  const blob = await response.blob();
+  const disposition = response.headers.get('Content-Disposition') ?? '';
+  const utf8Name = disposition.match(/filename\*=UTF-8''([^;]+)/i);
+  const asciiName = disposition.match(/filename="?([^";]+)"?/i);
+  const filename = utf8Name
+    ? decodeURIComponent(utf8Name[1])
+    : asciiName
+      ? asciiName[1]
+      : fallbackName;
+
+  const objectUrl = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = objectUrl;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+}
+
 export const api = {
   login: (login: string, password: string) =>
     request<LoginResponse>('/auth/login/', {
@@ -167,11 +215,20 @@ export const api = {
       body: JSON.stringify({ records }),
     }),
 
-  analyticsReportUrl: (format: 'xlsx' | 'pdf', filters: AnalyticsFilters = {}) =>
-    `${BASE_URL}/reports/analytics.${format}${buildQuery(filters)}`,
+  downloadAnalyticsReport: (format: 'xlsx' | 'pdf', filters: AnalyticsFilters = {}) =>
+    download(
+      `/reports/analytics.${format}${buildQuery(filters)}`,
+      `analytics_report.${format}`,
+    ),
 
-  lessonReportUrl: (lessonId: number, format: 'xlsx' | 'pdf') =>
-    `${BASE_URL}/reports/lessons/${lessonId}.${format}`,
+  downloadLessonReport: (lessonId: number, format: 'xlsx' | 'pdf') =>
+    download(
+      `/reports/lessons/${lessonId}.${format}`,
+      `lesson_${lessonId}_report.${format}`,
+    ),
+
+  downloadCertificate: (fio: string, date: string) =>
+    download(`/reports/certificate.pdf${buildQuery({ fio, date })}`, 'Справка.pdf'),
 
   getAnalytics: (filters: AnalyticsFilters = {}) =>
     request<AttendanceStat[]>(`/analytics/${buildQuery(filters)}`),
