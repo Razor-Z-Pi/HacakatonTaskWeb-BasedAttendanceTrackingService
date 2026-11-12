@@ -93,7 +93,7 @@ docker-compose.yml
 
 ### Авторизация
 <div align="center">
-  <img src="https://github.com/Razor-Z-Pi/HacakatonTaskWeb-BasedAttendanceTrackingService/blob/master/image/auth.png" width="600" height="300"/>
+  <img src="https://github.com/Razor-Z-Pi/HacakatonTaskWeb-BasedAttendanceTrackingService/blob/master/image/auth.png" width="300" height="300"/>
 </div>
 
 ### Главное меню
