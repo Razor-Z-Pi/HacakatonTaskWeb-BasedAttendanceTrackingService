@@ -2,6 +2,16 @@
 
 Хакатон, кейс «Цифровой Кампус»: веб-сервис учёта посещаемости.
 
+<div align="center">
+  <img src="https://github.com/Razor-Z-Pi/HacakatonTaskWeb-BasedAttendanceTrackingService/blob/master/image/Task.png" width="600" height="300"/>
+</div>
+
+## Преимущества
+
+<div align="center">
+  <img src="https://github.com/Razor-Z-Pi/HacakatonTaskWeb-BasedAttendanceTrackingService/blob/master/image/advantages.png" width="600" height="300"/>
+</div>
+
 ## Стек
 
 - **Frontend:** React 19, TypeScript, Vite, MUI, Recharts, PWA.
@@ -42,6 +52,12 @@ docker compose up --build -d
 
 Сайт: `http://localhost:8080`. Порт меняется через `WEB_PORT`. Контейнер `web` слушает только `127.0.0.1`; наружу его отдаёт host-nginx с SSL — пример конфига в `deploy/host-nginx.conf.example`.
 
+## Схема Базы Данных :)
+
+<div align="center">
+  <img src="https://github.com/Razor-Z-Pi/HacakatonTaskWeb-BasedAttendanceTrackingService/blob/master/image/schema.png" width="600" height="300"/>
+</div>
+
 ## Что реализовано
 
 - Вход по логину/паролю, Bearer-токен, хранение сессии после перезагрузки.
@@ -72,3 +88,25 @@ docker-compose.yml
 ```
 
 Старый `import_database.py` оставлен как референс исходной схемы; актуальная загрузка данных — `python manage.py seed_data` внутри `backend/`.
+
+## Скриншоты интерфейса веб-сервиса
+
+### Авторизация
+<div align="center">
+  <img src="https://github.com/Razor-Z-Pi/HacakatonTaskWeb-BasedAttendanceTrackingService/blob/master/image/auth.png" width="600" height="300"/>
+</div>
+
+### Главное меню
+<div align="center">
+  <img src="https://github.com/Razor-Z-Pi/HacakatonTaskWeb-BasedAttendanceTrackingService/blob/master/image/main.png" width="600" height="300"/>
+</div>
+
+### Аналитика
+<div align="center">
+  <img src="https://github.com/Razor-Z-Pi/HacakatonTaskWeb-BasedAttendanceTrackingService/blob/master/image/analitik.png" width="600" height="300"/>
+</div>
+
+### Календарь отчётности и аналитики
+<div align="center">
+  <img src="https://github.com/Razor-Z-Pi/HacakatonTaskWeb-BasedAttendanceTrackingService/blob/master/image/calendare.png" width="600" height="300"/>
+</div>
